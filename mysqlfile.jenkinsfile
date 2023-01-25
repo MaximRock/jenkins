@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('mysql') {
+            steps {
+                sh 'mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam -e \'select * from clan limit 10;\''
+            }
+        }
+    }
+}
