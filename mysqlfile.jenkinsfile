@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('mysql select') {
             steps {
-                sh 'mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam -e \'select * from clan limit 10;\' > /home/admin/github/jenkins/log.txt'
+                sh 'sudo mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam -e \'select * from clan limit 10;\' > /home/admin/github/jenkins/log.txt'
                 sh 'pwd'
             }
         }
