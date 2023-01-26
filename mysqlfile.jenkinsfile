@@ -2,10 +2,15 @@ pipeline {
     agent any
 
     stages {
-        stage('mysql') {
+        stage('mysql select') {
             steps {
-                sh 'mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam -e \'select * from clan limit 10;\''
+                sh 'mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam -e \'select * from clan limit 10;\' > log.txt'
                 sh 'pwd'
+            }
+        }
+        stage('stdout inquiry mysql') {
+            steps {
+                sh 'cp /var/lib/jenkins/workspace/git_mysql/log.txt /home/admin/github/jenkins/'
             }
         }
     }
