@@ -1,7 +1,8 @@
 pipeline {
-    agent {
-       triggers { pollSCM('* * * * *') }
-           }
+    agent any
+    
+    triggers { pollSCM('* * * * *') }
+ 
     stages {
         stage('mysql select') {
             steps {
