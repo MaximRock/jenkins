@@ -8,7 +8,7 @@ pipeline {
             steps {
                 sh 'mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam -e \'select * from clan limit 10;\' > log.txt'
                 sh 'pwd'
-                sh 'cp /var/lib/jenkins/workspace/gitMysql/log.txt /home/admin/'
+                sh 'cp /var/lib/jenkins/workspace/gitMysql/log.txt /home/admin/log.txt'
             }
         }
         stage('mysql select_show_tables') {
