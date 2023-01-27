@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('mysql select_limit') {
             steps {
-                sh 'mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam -e \'select * from clan limit 10;\' > log.txt'
+                sh 'mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam -e \'select * from clan limit 10;\' > log_limit.txt'
                 sh 'pwd'
                 sh 'su -'
                 sh 'chmod 777 log.txt'
@@ -15,7 +15,7 @@ pipeline {
         }
         stage('mysql select_show_tables') {
             steps {
-                sh 'mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam -e \'SHOW TABLES;\''
+                sh 'mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam -e \'SHOW TABLES;\' > log_show_tables.txt'
             }
         }
         stage('mysql select') {
@@ -26,7 +26,7 @@ pipeline {
                 WHERE rf.ncbi_id = tx.ncbi_id \
                 AND fr.rfamseq_acc = rf.rfamseq_acc \
                 AND tx.ncbi_id = 10116 -- NCBI taxonomy id of Rattus norvegicus \
-                AND is_significant = 1 -- exclude low-scoring matches from the same cla; \''
+                AND is_significant = 1 -- exclude low-scoring matches from the same cla;\' > log_select.txt'
             }
         }
     }
