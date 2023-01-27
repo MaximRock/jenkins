@@ -8,6 +8,7 @@ pipeline {
             steps {
                 sh 'mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam -e \'select * from clan limit 10;\' > log.txt'
                 sh 'pwd'
+                sh 'su -'
                 sh 'chmod 777 log.txt'
                 sh 'cp log.txt /home/admin/github'
             }
