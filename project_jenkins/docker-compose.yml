@@ -1,0 +1,17 @@
+version: '2.15.1'
+services:
+  nginx:
+    image: nginx:stable
+    ports:
+      - "9889:80"
+      - "4343:443"
+    volumes:
+      - ./www/mysite:/usr/share/nginx/html
+      - ./logs:/var/logs/nginx
+
+    healthcheck:
+      test: curl -f http://127.0.0.1:9889 | grep Moving || exit 1
+      interval: 5s
+      retries: 5
+      start_period: 1s
+      timeout: 1s   
