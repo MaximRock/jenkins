@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+    
+    triggers { pollSCM('* * * * *') }
+ 
+    stages {
+        stage('mysql select_limit') {
+            steps {
+                sh 'mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam -e \'select * from clan limit 10;\' > log_limit.txt'
+                sh 'pwd'
+                sh 'cat log_limit.txt'
+            }
+        }
+        stage('mysql select_show_tables') {
+            steps {
+                sh 'mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam -e \'SHOW TABLES;\' > log_show_tables.txt'
+                sh 'cat log_show_tables.txt'
+            }
+        }
+        stage('mysql select') {
+            steps {
+                sh 'mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam -e \
+                \'SELECT fr.rfam_acc, fr.rfamseq_acc, fr.seq_start, fr.seq_end \
+                FROM full_region fr, rfamseq rf, taxonomy tx \
+                WHERE rf.ncbi_id = tx.ncbi_id \
+                AND fr.rfamseq_acc = rf.rfamseq_acc \
+                AND tx.ncbi_id = 10116 -- NCBI taxonomy id of Rattus norvegicus \
+                AND is_significant = 1 -- exclude low-scoring matches from the same cla;\' > log_select.txt'
+                sh 'cat log_select.txt'
+            }
+        }
+    }
+}
+
