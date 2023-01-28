@@ -32,9 +32,6 @@ pipeline {
                 sh '''
                     IP=$(wget -qO- eth0.me)
                     curl -I http://$IP:9889
-
-                    curl --header "Status Code" \
-                        http://$IP:9889
                 '''
             }
         }
