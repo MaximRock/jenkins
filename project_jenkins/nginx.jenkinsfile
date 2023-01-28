@@ -34,7 +34,6 @@ pipeline {
                     curl -I http://$IP:9889
 
                     curl --header "Status Code" \
-                        --request POST \
                         http://$IP:9889
                 '''
             }
