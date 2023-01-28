@@ -31,7 +31,6 @@ pipeline {
                 echo "================ run test ============="
                 sh '''
                     IP=$(wget -qO- eth0.me)
-                    curl -I https://$IP:9889 2>/dev/null | head -n 1 | cut -d$' ' -f2
                     curl -I http://$IP:9889
                 '''
             }
