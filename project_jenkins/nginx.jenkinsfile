@@ -5,8 +5,9 @@ pipeline {
         stage ("start docker container") { 
             steps {
                 echo " =============== start docker container ================="
-                //dir ('')
-                sh 'docker-composr up -d'
+                dir ('project_jenkins/') {
+                    sh 'docker-composr up -d'
+                }
             }
         }
     }
