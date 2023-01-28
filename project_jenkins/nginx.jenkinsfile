@@ -20,8 +20,10 @@ pipeline {
         }
         stage('Start container') {
             steps {
-                sh 'docker compose up -d --no-color --wait'
-                sh 'docker compose ps'
+                dir ('project_jenkins/') {
+                    sh 'docker-compose up -d --no-color --wait'
+                    sh 'docker-compose ps'
+                }
             }
         }
     }
