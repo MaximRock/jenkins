@@ -5,8 +5,12 @@ pipeline {
         stage ("start docker container") { 
             steps {
                 echo " =============== start docker container ================="
-                dir ('project_jenkins/') {
-                    sh 'docker run -v /www/mysite:/usr/share/nginx/html:ro -p 9889:80 nginx:stable'
+                //dir ('project_jenkins/') {
+                    //sh 'docker run -v /www/mysite:/usr/share/nginx/html:ro -p 9889:80 nginx:stable'
+                 sh '''
+                   docker-compose --version
+                   docker version
+                 '''  
                 }
             }
         }
