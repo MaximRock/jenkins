@@ -1,0 +1,15 @@
+pipeline {
+    agent {
+        label 'master'
+    }
+
+    stages { 
+        stage ("start docker container") { 
+            steps {
+                echo " =============== start docker container ================="
+                //dir ('')
+                sh 'docker-composr up -d'
+            }
+        }
+    }
+}
