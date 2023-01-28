@@ -31,7 +31,7 @@ pipeline {
                 echo "================ run test ============="
                 sh '''
                     IP=wget -qO- eth0.me
-                    curl http://IP:9889/param?query=demo | jq
+                    curl http://$IP:9889/param?query=demo | jq
                 '''
             }
         }
