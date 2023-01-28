@@ -32,6 +32,9 @@ pipeline {
                 sh '''
                     IP=$(wget -qO- eth0.me)
                     curl -I http://$IP:9889
+
+                    curl --header "Content-Type: application/json" \
+                        http://$IP:9889
                 '''
             }
         }
