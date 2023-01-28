@@ -4,9 +4,7 @@ pipeline {
     stages { 
         stage ("start docker container") { 
             steps {
-                echo " =============== start docker container ================="
-                //dir ('project_jenkins/') {
-                    //sh 'docker run -v /www/mysite:/usr/share/nginx/html:ro -p 9889:80 nginx:stable'
+                echo " =============== docker version ================="
                  sh '''
                    docker-compose --version
                    docker version
@@ -15,15 +13,26 @@ pipeline {
         }
         stage('delete docker data') {
             steps {
+                echo "================ dogker system prune ============="
                 sh 'docker system prune -a --volumes -f'
             }
         }
         stage('Start container') {
             steps {
+                echo "================ start docker compose ============="
                 dir ('project_jenkins/') {
                     sh 'docker-compose up -d --no-color --wait'
                     sh 'docker-compose ps'
                 }
+            }
+        }
+        stage('Run test container') {
+            steps {
+                echo "================ run test ============="
+                sh '''
+                    IP=wget -qO- eth0.me
+                    curl http://IP:9889/param?query=demo | jq
+                '''
             }
         }
     }
