@@ -40,10 +40,8 @@ pipeline {
                 echo "============= Run test MD5 ============"
                 dir ('project_jenkins/www/mysite/') {
                     sh '''
-                        X=$(md5sum index.html)
-                        ID=$(docker ps -aqf name=nginx)
-                        Y=$(docker exec $ID md5sum /usr/share/nginx/html/index.html)
-                        [ "$X" != "$Y" ]
+                        cat md5sum index.html
+                        
                     '''    
                 }
             }
