@@ -43,6 +43,7 @@ pipeline {
                         X=$(md5sum index.html)
                         ID=$(docker ps -aqf name=nginx)
                         Y=$(docker exec $ID md5sum /usr/share/nginx/html/index.html)
+                        IP=$(wget -qO- eth0.me)
                         md5sum curl http://$IP:9889
                     '''    
                 }
