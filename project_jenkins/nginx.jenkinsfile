@@ -42,7 +42,7 @@ pipeline {
                     sh '''
                         X=$(md5sum index.html)
                         ID=$(docker ps -aqf name=nginx)
-                        Y=$(docker exec $ID md5sum /usr/share/nginx/html/index.html > HTML_2.txt)
+                        Y=$(docker exec $ID md5sum /usr/share/nginx/html/index.html)
                         if [ "$X" == "$Y"]
                     '''    
                 }
