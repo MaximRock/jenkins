@@ -5,6 +5,7 @@ services:
     ports:
       - "9889:80"
       - "4343:443"
+    container_name: nginx  
     volumes:
       - ./www/mysite:/usr/share/nginx/html
       - ./logs:/var/logs/nginx
