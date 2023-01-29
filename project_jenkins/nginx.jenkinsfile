@@ -43,7 +43,7 @@ pipeline {
                         md5sum index.html > HTML_1.txt
                         ID=$(docker ps -aqf name=nginx)
                         docker exec $ID md5sum /usr/share/nginx/html/index.html > HTML_2.txt
-                        diff -q HTML_1.txt HTML_2.txt
+                        diff HTML_1.txt HTML_2.txt
                     '''    
                 }
             }
