@@ -50,7 +50,7 @@ pipeline {
                     '''
                 }
                 sh '''
-                    HTMML_1=$(./project_jenkins/www/mysite/index.html
+                    HTMML_1=$(./project_jenkins/www/mysite/index.html)
                     echo "$HTMML_1"
                 '''
             }
