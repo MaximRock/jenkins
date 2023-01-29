@@ -45,8 +45,8 @@ pipeline {
                 }
                 sh '''
                     ID=$(docker ps -aqf name=nginx)
-                    docker exec $ID bin/bash
-                    HTML_2=$(md5sum /usr/share/nginx/index.html)
+                    docker exec $ID md5sum /usr/share/nginx/index.html
+                    
                 '''
             }
         }
