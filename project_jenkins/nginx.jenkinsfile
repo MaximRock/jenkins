@@ -40,7 +40,7 @@ pipeline {
                 echo "============= Run test MD5 ============"
                 sh '''
                     ID=$(docker ps -aqf name=nginx)
-                    docker exec $ID ls /usr/share/nginx/ | gpep index.html
+                    docker exec $ID md5sum /usr/share/nginx/html/index.html
                     
                 '''
                 dir ('project_jenkins/www/mysite/') {
