@@ -45,7 +45,7 @@ pipeline {
                 }
                 sh '''
                     ID=$(docker ps -aqf name=nginx)
-                    docker exec $ID
+                    docker exec $ID bin/bash
                 '''
             }
         }
