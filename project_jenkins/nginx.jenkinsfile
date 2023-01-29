@@ -41,10 +41,9 @@ pipeline {
                 dir ('project_jenkins/www/mysite/') {
                     sh '''
                         HTMML_1=$(md5sum index.html)
-                        echo "$HTMML_1"
                         ID=$(docker ps -aqf name=nginx)
                         HTMML_2=$(docker exec $ID md5sum /usr/share/nginx/html/index.html)
-                        echo "$HTMML_2"
+                        $HTMML_1==$HTMML_2
                     '''
                 }
             }
