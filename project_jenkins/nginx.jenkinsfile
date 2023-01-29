@@ -41,7 +41,6 @@ pipeline {
                 dir ('project_jenkins/www/mysite/') {
                     sh '''
                         cat md5sum index.html
-                        
                     '''    
                 }
             }
