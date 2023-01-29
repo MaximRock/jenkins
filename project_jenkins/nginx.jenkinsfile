@@ -42,8 +42,10 @@ pipeline {
                     sh '''
                         md5sum index.html > x.txt
                         ID=$(docker ps -aqf name=nginx)
-                        Y=$(docker exec $ID md5sum /usr/share/nginx/html/index.html)
-                        sed -r 's/ .+//' x.txt
+                        docker exec $ID md5sum /usr/share/nginx/html/index.html > y.txt
+                        sed -r 's/ .+//' x.txt > x.txt
+                        sed -r 's/ .+//' y.txt > y.txt
+                        diff -q x.txt y.txt
                     '''    
                 }
             }
