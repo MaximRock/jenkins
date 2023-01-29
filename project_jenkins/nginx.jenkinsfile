@@ -49,7 +49,7 @@ pipeline {
                         echo "$HTMML_1"
                     '''
                 }
-                sh '$HTMML_2==$HTMML_1'
+                sh '$HTMML_2=$HTMML_1'
             }
         }
     }
