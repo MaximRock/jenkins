@@ -31,7 +31,7 @@ pipeline {
                 echo "================ run test ============="
                 sh '''
                     IP=$(wget -qO- eth0.me)
-                    curl -I http://$IP:9889 | grep -w 200
+                    curl -I http://$IP:9889 | grep -w 300
                 '''
             }
         }
@@ -49,6 +49,19 @@ pipeline {
                     '''    
                 }
             }
+        }
+    }
+    post {
+        always {
+            sh '''
+                docker-compose down --remove-orphans -v'
+                docker-compose ps
+            '''
+        }
+        failure{
+            emailext to: "maxrockvardill@gmail.com",
+            subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+            body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
         }
     }
 }
