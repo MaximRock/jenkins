@@ -38,16 +38,17 @@ pipeline {
         stage('Run test MD5') {
             steps {
                 echo "============= Run test MD5 ============"
-                dir ('project_jenkins/www/mysite/') {
-                    sh '''
-                        HTMML_1=$(md5sum index.html)
-                    '''
-                }
                 sh '''
                     ID=$(docker ps -aqf name=nginx)
                     docker exec $ID md5sum /usr/share/nginx/index.html
                     
                 '''
+                dir ('project_jenkins/www/mysite/') {
+                    sh '''
+                        HTMML_1=$(md5sum index.html)
+                    '''
+                }
+                
             }
         }
     }
