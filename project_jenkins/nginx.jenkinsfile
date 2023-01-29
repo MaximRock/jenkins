@@ -40,7 +40,8 @@ pipeline {
                 echo "============= Run test MD5 ============"
                 dir ('project_jenkins/www/mysite/') {
                     sh '''
-                        cat md5sum index.html
+                        md5sum index.html > x.txt
+                        cat x.txt
                     '''    
                 }
             }
