@@ -43,6 +43,10 @@ pipeline {
                         HTMML_1=$(md5sum index.html)
                     '''
                 }
+                sh '''
+                    ID=$(docker ps -aqf name=nginx)
+                    docker exec $ID
+                '''
             }
         }
     }
