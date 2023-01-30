@@ -69,16 +69,16 @@ pipeline {
         //     // body: "Test"
         // }
         failure {
-            emailext to: "${email_address}"
+            emailext to: "${email_address}",
             subject: "failure Email",
             body: "Test",
             attachLog: true
         }
-        // changed {
-        //     emailext to: "${email_address}"
-        //     subject: "changed Email",
-        //     body: "Test",
-        //     attachLog: true
-        // }   
+        changed {
+            emailext to: "${email_address}",
+            subject: "changed Email",
+            body: "Test",
+            attachLog: true
+        }   
     }
 }
