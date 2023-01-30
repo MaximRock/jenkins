@@ -12,7 +12,7 @@ pipeline {
                 echo " =============== docker version ================="
                  sh '''
                    docker-compose --version
-                   docker version
+                   docker --version
                  '''  
             }
         }
@@ -68,12 +68,12 @@ pipeline {
         //     // subject: "Test Email",
         //     // body: "Test"
         // }
-        failure {
-            emailext to: "${email_address}",
-            subject: "failure Email",
-            body: "Test",
-            attachLog: true
-        }
+        // failure {
+        //     emailext to: "${email_address}",
+        //     subject: "failure Email",
+        //     body: "Test",
+        //     attachLog: true
+        // }
         changed {
             emailext to: "${email_address}",
             subject: "changed Email",
