@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        path_docker_index_html = "/usr/share/nginx/html/index.html"
+        email_address = "maxrockvardill@gmail.com"
+    }
+
     stages { 
         stage ("start docker container") { 
             steps {
@@ -42,7 +47,7 @@ pipeline {
                     sh '''
                         md5sum index.html > x.txt
                         ID=$(docker ps -aqf name=nginx)
-                        docker exec $ID md5sum /usr/share/nginx/html/index.html > y.txt
+                        docker exec $ID md5sum ${path_docker_index_html} > y.txt
                         sed -r 's/ .+//' x.txt > x.txt
                         sed -r 's/ .+//' y.txt > y.txt
                         diff -q x.txt y.txt
@@ -64,7 +69,13 @@ pipeline {
         //     // body: "Test"
         // }
         failure {
-            emailext to: "maxrockvardill@gmail.com",
+            emailext to: "${email_address}"
+            subject: "Test Email",
+            body: "Test",
+            attachLog: true
+        }
+        changed {
+            emailext to: "${email_address}"
             subject: "Test Email",
             body: "Test",
             attachLog: true
