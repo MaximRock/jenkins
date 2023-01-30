@@ -74,11 +74,11 @@ pipeline {
             body: "Test",
             attachLog: true
         }
-        changed {
-            emailext to: "${email_address}"
-            subject: "changed Email",
-            body: "Test",
-            attachLog: true
-        }   
+        // changed {
+        //     emailext to: "${email_address}"
+        //     subject: "changed Email",
+        //     body: "Test",
+        //     attachLog: true
+        // }   
     }
 }
