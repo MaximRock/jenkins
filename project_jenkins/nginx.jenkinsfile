@@ -52,13 +52,13 @@ pipeline {
         }
     }
     post {
-        always {
-            sh 'docker stop nginx'
-            sh 'docker rm nginx'
-            // mail to: "testrock75@gmail.com",
-            // subject: "Test Email",
-            // body: "Test"
-        }
+        // always {
+        //     sh 'docker stop nginx'
+        //     sh 'docker rm nginx'
+        //     // mail to: "testrock75@gmail.com",
+        //     // subject: "Test Email",
+        //     // body: "Test"
+        // }
         changed {
             emailext to: "testrock75@gmail.com",
             subject: "Test Email",
