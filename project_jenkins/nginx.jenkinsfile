@@ -55,8 +55,6 @@ pipeline {
         always {
             sh 'docker stop nginx'
             sh 'docker rm nginx'
-        }
-        always{
             mail to: "testrock75@gmail.com",
             subject: "Test Email",
             body: "Test"
