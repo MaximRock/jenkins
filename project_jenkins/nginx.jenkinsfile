@@ -63,7 +63,7 @@ pipeline {
         //     // subject: "Test Email",
         //     // body: "Test"
         // }
-        changed {
+        failure {
             emailext to: "maxrockvardill@gmail.com",
             subject: "Test Email",
             body: "Test",
