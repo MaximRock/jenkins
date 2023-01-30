@@ -58,7 +58,7 @@ pipeline {
             mail to: "testrock75@gmail.com",
             subject: "Test Email",
             body: "Test",
-            attachLog: true
+            attachlog: true
         }
         // changed {
         //     emailext to: "testrock75@gmail.com",
