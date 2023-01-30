@@ -70,13 +70,13 @@ pipeline {
         // }
         failure {
             emailext to: "${email_address}"
-            subject: "Test Email",
+            subject: "failure Email",
             body: "Test",
             attachLog: true
         }
         changed {
             emailext to: "${email_address}"
-            subject: "Test Email",
+            subject: "changed Email",
             body: "Test",
             attachLog: true
         }   
