@@ -52,22 +52,22 @@ pipeline {
         }
     }
     post {
-        always {
-            // sh 'docker stop nginx'
-            // sh 'docker rm nginx'
-            emailext to: "maxrockvardill@gmail.com",
+        // always {
+        //     // sh 'docker stop nginx'
+        //     // sh 'docker rm nginx'
+        //     // emailext to: "maxrockvardill@gmail.com",
+        //     // subject: "Test Email",
+        //     // body: "Test",
+        //     // attachLog: true
+        //     // mail to: "maxrockvardill@gmail.com",
+        //     // subject: "Test Email",
+        //     // body: "Test"
+        // }
+        changed {
+            emailext to: "testrock75@gmail.com",
             subject: "Test Email",
             body: "Test",
             attachLog: true
-            // mail to: "maxrockvardill@gmail.com",
-            // subject: "Test Email",
-            // body: "Test"
-        }
-        // changed {
-        //     emailext to: "testrock75@gmail.com",
-        //     subject: "Test Email",
-        //     body: "Test",
-        //     attachLog: true
-        // }   
+        }   
     }
 }
