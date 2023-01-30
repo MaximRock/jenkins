@@ -49,29 +49,22 @@ pipeline {
                 echo "============= Run test MD5 ============"
                 dir ('project_jenkins/www/mysite/') {
                     sh '''
-                        md5sum index.html > x.txt
+                        md5sum index.html > host_index.txt
                         ID=$(docker ps -aqf name=nginx)
-                        docker exec $ID md5sum ${path_docker_index_html} > y.txt
-                        sed -r 's/ .+//' x.txt > x.txt
-                        sed -r 's/ .+//' y.txt > y.txt
-                        diff -q x.txt y.txt
+                        docker exec $ID md5sum ${path_docker_index_html} > docker_index.txt
+                        sed -r 's/ .+//' host_index.txt > host_index.txt
+                        sed -r 's/ .+//' docker_index.txt > docker_index.txt
+                        diff -q host_index.txt docker_index.txt
                     '''    
                 }
             }
         }
     }
     post {
-        // always {
-        //     // sh 'docker stop nginx'
-        //     // sh 'docker rm nginx'
-        //     // emailext to: "maxrockvardill@gmail.com",
-        //     // subject: "Test Email",
-        //     // body: "Test",
-        //     // attachLog: true
-        //     // mail to: "maxrockvardill@gmail.com",
-        //     // subject: "Test Email",
-        //     // body: "Test"
-        // }
+        always {
+            sh 'docker stop nginx'
+            sh 'docker rm nginx'
+        }
         failure {
             emailext to: "${email_address}",
             subject: "failure Email",
