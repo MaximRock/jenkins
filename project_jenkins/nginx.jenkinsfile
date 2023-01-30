@@ -55,9 +55,14 @@ pipeline {
         always {
             sh 'docker stop nginx'
             sh 'docker rm nginx'
-            mail to: "testrock75@gmail.com",
-            subject: "Test Email",
-            body: "Test"
+            // mail to: "testrock75@gmail.com",
+            // subject: "Test Email",
+            // body: "Test"
+        }
+        failure{
+            emailext to: "naivetechblog@gmail.com",
+            subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+            body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
         }
     }
     
