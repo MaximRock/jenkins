@@ -1,6 +1,8 @@
 pipeline {
     agent any
 
+    triggers { pollSCM('* * * * *') }
+
     environment {
         path_docker_index_html = "/usr/share/nginx/html/index.html"
         email_address = "maxrockvardill@gmail.com"
@@ -68,12 +70,12 @@ pipeline {
         //     // subject: "Test Email",
         //     // body: "Test"
         // }
-        // failure {
-        //     emailext to: "${email_address}",
-        //     subject: "failure Email",
-        //     body: "Test",
-        //     attachLog: true
-        // }
+        failure {
+            emailext to: "${email_address}",
+            subject: "failure Email",
+            body: "Test",
+            attachLog: true
+        }
         changed {
             emailext to: "${email_address}",
             subject: "changed Email",
