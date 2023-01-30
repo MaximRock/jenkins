@@ -65,12 +65,6 @@ pipeline {
             sh 'docker stop nginx'
             sh 'docker rm nginx'
         }
-        failure {
-            emailext to: "${email_address}",
-            subject: "failure Email",
-            body: "Failure Test",
-            attachLog: true
-        }
         changed {
             emailext to: "${email_address}",
             subject: "changed Email",
