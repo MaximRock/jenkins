@@ -5,7 +5,9 @@ pipeline {
  
     stages {
         stage {
-            sh 'log_limit.sh'
+            steps {
+                sh 'log_limit.sh'
+            }
         }
         // stage('mysql select_limit') {
         //     steps {
