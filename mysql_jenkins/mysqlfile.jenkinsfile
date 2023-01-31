@@ -8,7 +8,7 @@ pipeline {
             steps {
                 dir ('mysql_jenkins/') {
                     sh 'chmod ugo+x log_limit.sh'
-                    sh 'log_limit.sh'
+                    sh './log_limit.sh'
                 }
             }
         }
