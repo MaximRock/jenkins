@@ -13,7 +13,7 @@ pipeline {
                 }
             }
         }
-        stage('mysql select_show_tables') {
+        stage ('mysql select_show_tables') {
             steps {
                 dir ('mysql_jenkins/') {
                     sh 'chmod ugo+x log_show_tables.sh'
