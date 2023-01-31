@@ -1,0 +1,1 @@
+mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam -e 'SHOW TABLES;' > log_show_tables.txt
