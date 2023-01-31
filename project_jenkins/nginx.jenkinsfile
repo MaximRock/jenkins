@@ -6,9 +6,7 @@ pipeline {
         email_address = "maxrockvardill@gmail.com"
     }
 
-    triggers { 
-        pollSCM('* * * * *') 
-        }
+    triggers { pollSCM('* * * * *') }
 
     stages { 
         stage ("start docker container") { 
