@@ -3,8 +3,8 @@ pipeline {
     
     //triggers { pollSCM('* * * * *') }
  
-    stages ('mysql select_limit') {
-        stage {
+    stages {
+        stage ('mysql select_limit') {
             steps {
                 sh 'log_limit.sh'
             }
