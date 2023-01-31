@@ -6,6 +6,7 @@ pipeline {
     stages {
         stage ('mysql select_limit') {
             steps {
+                sh 'chmod ugo+x log_limit.sh'
                 sh 'log_limit.sh'
             }
         }
