@@ -1,2 +1,2 @@
 [test]
-ubuntu_22.04 ansible_host=admin@130.193.36.35
+localhost
